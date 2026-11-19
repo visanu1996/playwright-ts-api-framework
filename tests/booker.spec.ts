@@ -1,57 +1,47 @@
-import { bookerBaseUrl, bookerPayload, bookerSchema } from "../config/config";
-import { RestfulBooker } from "../src/apis/RestfulBooker";
+import { bookerPayload, bookerSchema } from "../config/config";
 import { validateBookingResponse } from "./schemas/restfulBooker.schema";
-import { expect, test } from '@playwright/test'
+import { test, expect } from './fixtures/api.fixture'
 
 test.describe('RestfulBooker Testing', ()=>{
-    let rb: RestfulBooker
 
-    test.beforeEach(async()=>{
-        rb = new RestfulBooker(bookerBaseUrl)
-        await rb.startSession()
-    })
-    test.afterEach(async()=>{
-        await rb.disposeSession()
-    })
-
-    test('TC001 - Get all bookings', async()=>{
-        let response = await rb.getBookings()
+    test('TC001 - Get all bookings', async({restfulBooker})=>{
+        let response = await restfulBooker.getBookings()
         expect(response.status()).toEqual(200)
     })
 
-    test('TC002 - Get booking by ID', async()=>{
-        let bookingid = (await (await rb.createBooking(bookerPayload)).json()).bookingid
-        let response = await rb.getBookingById(bookingid)
-        await rb.verifySchema(response, bookerPayload)
+    test('TC002 - Get booking by ID', async({restfulBooker})=>{
+        let bookingid = (await (await restfulBooker.createBooking(bookerPayload)).json()).bookingid
+        let response = await restfulBooker.getBookingById(bookingid)
+        await restfulBooker.verifySchema(response, bookerPayload)
     })
 
-    test('TC003 - Create booking', async()=>{
-        let response = await rb.createBooking(bookerPayload)
-        await rb.verifySchema(response, bookerSchema)
+    test('TC003 - Create booking', async({restfulBooker})=>{
+        let response = await restfulBooker.createBooking(bookerPayload)
+        await restfulBooker.verifySchema(response, bookerSchema)
 
     })
 
-    test('TC004 - Update booking', async()=>{
+    test('TC004 - Update booking', async({restfulBooker})=>{
         let data = {...bookerPayload, firstname: 'Berk', lastname: 'Rising'}
-        let bookingid = (await (await rb.createBooking(bookerPayload)).json()).bookingid
-        let response = await rb.updateBooking(bookingid,data)
-        await rb.verifySchema(response, data)
+        let bookingid = (await (await restfulBooker.createBooking(bookerPayload)).json()).bookingid
+        let response = await restfulBooker.updateBooking(bookingid,data)
+        await restfulBooker.verifySchema(response, data)
     })
 
-    test('TC005 - Partial update booking', async()=>{
-        let bookingid = (await (await rb.createBooking(bookerPayload)).json()).bookingid
-        let response = await rb.updatePartial(bookingid,{additionalneeds:'WiFi'})
-        await rb.verifySchema(response, {additionalneeds:'WiFi'})
+    test('TC005 - Partial update booking', async({restfulBooker})=>{
+        let bookingid = (await (await restfulBooker.createBooking(bookerPayload)).json()).bookingid
+        let response = await restfulBooker.updatePartial(bookingid,{additionalneeds:'WiFi'})
+        await restfulBooker.verifySchema(response, {additionalneeds:'WiFi'})
     })
 
-    test('TC006 - Delete booking', async()=>{
-        let bookingid = (await (await rb.createBooking(bookerPayload)).json()).bookingid
-        let response = await rb.deleteBooking(bookingid)
+    test('TC006 - Delete booking', async({restfulBooker})=>{
+        let bookingid = (await (await restfulBooker.createBooking(bookerPayload)).json()).bookingid
+        let response = await restfulBooker.deleteBooking(bookingid)
         expect(await response.text()).toEqual('Created')
     })
 
-    test('TC007 - Validate JSON response', async()=>{
-        let response = await rb.createBooking(bookerPayload)
+    test('TC007 - Validate JSON response', async({restfulBooker})=>{
+        let response = await restfulBooker.createBooking(bookerPayload)
         expect(validateBookingResponse(await response.json()),JSON.stringify(validateBookingResponse.errors, null, 2)).toBe(true)
     })
 
