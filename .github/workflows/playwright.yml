@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      env: 
+      env:
         BOOKER_USER: ${{ secrets.BOOKER_USER }}
         BOOKER_PASSWORD: ${{ secrets.BOOKER_PASSWORD }}
       run: npx playwright test

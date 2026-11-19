@@ -1,5 +1,5 @@
 import { bookerPayload } from '../../config/config'
-import { bookerCred } from '../../config/secret'
+import 'dotenv/config'
 import { BaseAPIs } from '../core/BaseAPIs'
 
 export class RestfulBooker extends BaseAPIs {
@@ -8,7 +8,7 @@ export class RestfulBooker extends BaseAPIs {
     async getToken(){
         this.token = (
             await (
-                await this.context.post('/auth',{data:{username: bookerCred.username, password: bookerCred.password}})
+                await this.context.post('/auth',{data:{username: process.env.BOOKER_USER, password: process.env.BOOKER_PASSWORD}})
             ).json()
         ).token
     }
