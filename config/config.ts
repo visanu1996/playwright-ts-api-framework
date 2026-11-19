@@ -1,5 +1,7 @@
 import { expect } from "@playwright/test"
 
+
+// -------------------- Booker
 export const bookerBaseUrl = 'https://restful-booker.herokuapp.com/'
 
 export const bookerPayload = {
@@ -29,3 +31,21 @@ export const bookerSchema = {
     }
     
 }
+
+// -------------------- PokeAPI
+export const pokeBaseUrl = 'https://pokeapi.co/api/v2/'
+export const pokeSchema = {
+    berries: {
+                count: expect.any(Number),
+                results: expect.arrayContaining([
+                    expect.objectContaining({
+                        name: expect.any(String),
+                        url: expect.any(String),
+                    }),
+                ]),
+            },
+    pokemon: {
+
+    }
+}
+export const pokePayload = {cheri : { id: 1, name: 'cheri' }, bulbasaur: {id: 1, name: 'bulbasaur'}}

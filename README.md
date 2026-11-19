@@ -17,7 +17,7 @@ The project is organized to cover multiple API providers:
 | API | Planned coverage |
 | --- | --- |
 | [DummyJSON](https://dummyjson.com/) | Products, users, authentication, and search |
-| [PokeAPI](https://pokeapi.co/) | Pokémon resources and response validation |
+| [PokeAPI](https://pokeapi.co/) | Berry listing and lookup by ID/name (including unknown-name handling); Pokémon lookup by ID/name with response-field checks |
 | [Restful-Booker](https://restful-booker.herokuapp.com/) | Create, list, retrieve by ID, update, partially update, and delete bookings; validate the create response against a JSON Schema |
 
 > The API service modules and test suite are currently being implemented.
