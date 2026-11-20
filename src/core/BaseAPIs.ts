@@ -22,11 +22,4 @@ export abstract class BaseAPIs {
         expect(await response.json()).toMatchObject(schema)
     }
 
-    protected getHeaders(headers: Record<string, string> = {}): Record<string, string> {
-        return {
-            ...this.headers,
-            ...headers,
-        };
-    }
-
 }

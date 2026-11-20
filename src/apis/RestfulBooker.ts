@@ -39,6 +39,6 @@ export class RestfulBooker extends BaseAPIs {
 
     private async headersWithToken(){
         if(!this.token) await this.getToken()
-        return this.getHeaders({'Cookie':`token=${this.token}`})
+        return {...this.headers,'Cookie':`token=${this.token}`}
     }
 }
