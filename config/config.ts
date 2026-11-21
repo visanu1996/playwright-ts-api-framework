@@ -49,3 +49,21 @@ export const pokeSchema = {
     }
 }
 export const pokePayload = {cheri : { id: 1, name: 'cheri' }, bulbasaur: {id: 1, name: 'bulbasaur'}}
+
+// ------------------- DummyJson
+export const dummyJsonUrl = 'https://dummyjson.com/'
+export const dummySchema = {
+    user : {
+        "id": expect.any(Number),
+        "username": expect.any(String),
+        "email": expect.any(String),
+        "firstName": expect.any(String),
+        "lastName": expect.any(String),
+        "gender": expect.any(String),
+        "image": expect.any(String),
+        "accessToken": expect.any(String),
+        "refreshToken": expect.any(String),
+        
+    },
+
+}
