@@ -22,6 +22,8 @@ jobs:
       env:
         BOOKER_USER: ${{ secrets.BOOKER_USER }}
         BOOKER_PASSWORD: ${{ secrets.BOOKER_PASSWORD }}
+        DUMMY_USER: ${{ secrets.DUMMY_USER }}
+        DUMMY_PASSWORD: ${{ secrets.DUMMY_PASSWORD }}
       run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
