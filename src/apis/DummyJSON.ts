@@ -15,7 +15,7 @@ export class DummyJSON extends BaseAPIs {
         return await this.context.get('/user/me',{headers:{...this.headers,'Autorization':`Bearer ${this.token}`}})
     }
 
-    async searchUser(username: string){
+    async searchUsers(username: string){
         return await this.context.get(`/users/search?q=${username}`)
     }
     // async getUserCartsByUserId(userId: number){
