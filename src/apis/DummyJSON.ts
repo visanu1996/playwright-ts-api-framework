@@ -12,7 +12,7 @@ export class DummyJSON extends BaseAPIs {
     }
 
     async getCurrentAuthenticateUser(){
-        return await this.context.get('/user/me',{headers:{...this.headers,'Autorization':`Bearer ${this.token}`}})
+        return await this.context.get('/user/me',{headers:{...this.headers,'Authorization':`Bearer ${this.token}`}})
     }
 
     async searchUsers(username: string){
@@ -39,7 +39,7 @@ export class DummyJSON extends BaseAPIs {
 
     // ---------------- Products
     async getAllProducts(){
-        return await this.context.get('/products')
+        return await this.context.get('/products?limit=0')
     }
 
     async getProductById(productId:number){
@@ -47,7 +47,7 @@ export class DummyJSON extends BaseAPIs {
     }
 
     async searchProduct(productName:string){
-        return await this.context.get(`/products/search?q=${productName}`)
+        return await this.context.get(`/products/search?limit=0&q=${productName}`)
     }
 
     // ---------------- Carts

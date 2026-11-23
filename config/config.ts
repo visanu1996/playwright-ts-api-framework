@@ -52,6 +52,7 @@ export const pokePayload = {cheri : { id: 1, name: 'cheri' }, bulbasaur: {id: 1,
 
 // ------------------- DummyJson
 export const dummyJsonUrl = 'https://dummyjson.com/'
+export const productBrand = 'Essence'
 export const dummySchema = {
     user : {
         "id": expect.any(Number),
@@ -65,5 +66,19 @@ export const dummySchema = {
         "refreshToken": expect.any(String),
         
     },
+    product : {
+      "id": expect.any(Number),
+      "title": expect.any(String),
+      "description": expect.any(String),
+      "category": expect.any(String),
+      "price": expect.any(Number),
+      "discountPercentage": expect.any(Number),
+      "rating": expect.any(Number),
+      "stock": expect.any(Number),
+      "tags": expect.any(Array),
+      "brand": expect.any(String),
+      "sku": expect.any(String),
+      "availabilityStatus": expect.any(String),
+    }
 
 }
