@@ -53,6 +53,7 @@ export const pokePayload = {cheri : { id: 1, name: 'cheri' }, bulbasaur: {id: 1,
 // ------------------- DummyJson
 export const dummyJsonUrl = 'https://dummyjson.com/'
 export const productBrand = 'Essence'
+export const testID = 999999999
 export const dummySchema = {
     user : {
         "id": expect.any(Number),
@@ -79,6 +80,22 @@ export const dummySchema = {
       "brand": expect.any(String),
       "sku": expect.any(String),
       "availabilityStatus": expect.any(String),
+    },
+    cart : {
+        id: expect.any(Number),
+        products: expect.arrayContaining([
+            expect.objectContaining({
+                id:expect.any(Number),
+                title: expect.any(String),
+                price: expect.any(Number),
+                quantity: expect.any(Number),
+                total: expect.any(Number),
+            })
+        ]),
+        total: expect.any(Number),
+        discountedTotal:expect.any(Number),
+        userId: expect.any(Number),
+        totalProducts: expect.any(Number),
+        totalQuantity: expect.any(Number)
     }
-
 }

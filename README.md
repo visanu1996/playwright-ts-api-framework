@@ -14,13 +14,11 @@ A portfolio project for demonstrating API test automation with [Playwright](http
 
 The project is organized to cover multiple API providers:
 
-| API | Planned coverage |
+| API | Coverage |
 | --- | --- |
-| [DummyJSON](https://dummyjson.com/) | Products, users, authentication, and search |
+| [DummyJSON](https://dummyjson.com/) | Products, users, authentication, search, and cart operations |
 | [PokeAPI](https://pokeapi.co/) | Berry listing and lookup by ID/name (including unknown-name handling); Pokémon lookup by ID/name with response-field checks |
 | [Restful-Booker](https://restful-booker.herokuapp.com/) | Create, list, retrieve by ID, update, partially update, and delete bookings; validate the create response against a JSON Schema |
-
-> The API service modules and test suite are currently being implemented.
 
 ## Planned Test Coverage
 
@@ -104,13 +102,13 @@ Browser binaries are installed for local and CI execution. API-only tests do not
 Run the complete Playwright test suite:
 
 ```bash
-npx playwright test
+npm test
 ```
 
 Run tests in Playwright UI mode:
 
 ```bash
-npx playwright test --ui
+npm run test:ui
 ```
 
 Run a specific test file:
@@ -122,9 +120,7 @@ npx playwright test tests/<test-file>.spec.ts
 Run tests using a specific project:
 
 ```bash
-npx playwright test --project=chromium
-npx playwright test --project=firefox
-npx playwright test --project=webkit
+npm run test:chromium
 ```
 
 ## Test Reports
@@ -132,7 +128,7 @@ npx playwright test --project=webkit
 The HTML report is generated after a test run:
 
 ```bash
-npx playwright show-report
+npm run test:report
 ```
 
 Generated reports and artifacts are excluded from source control. In GitHub Actions, the report is uploaded as a workflow artifact.
@@ -144,7 +140,7 @@ The base configuration includes:
 - Test discovery from `./tests`
 - Fully parallel test execution
 - CI-only retries and single-worker mode
-- Browser projects for Chromium, Firefox, and WebKit
+- Browser projects for Chromium
 - HTML reporting
 - Trace collection when a test is retried
 - `forbidOnly` enabled in CI
@@ -174,13 +170,13 @@ The framework is designed to keep tests maintainable:
 
 ## Roadmap
 
-- [ ] Implement reusable request methods in `BaseAPIs`
-- [ ] Add DummyJSON API test scenarios
-- [ ] Add PokeAPI test scenarios
-- [ ] Add Restful-Booker authentication and CRUD scenarios
-- [ ] Add JSON schema validation
-- [ ] Add environment-based configuration
-- [ ] Add positive and negative test data
+- [✓] Implement reusable request methods in `BaseAPIs`
+- [✓] Add DummyJSON API test scenarios
+- [✓] Add PokeAPI test scenarios
+- [✓] Add Restful-Booker authentication and CRUD scenarios
+- [✓] Add JSON schema validation
+- [✓] Add environment-based configuration
+- [✓] Add positive and negative test data
 - [ ] Add test tags and suite-level scripts
 - [ ] Publish and document test run results
 

@@ -3,15 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:chromium": "playwright test --project=chromium",
+    "test:report": "playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.65.1",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^26.6.6",
     "ajv": "^8.20.0",
-    "dotenv": "^18.0.10"
+    "dotenv": "^18.0.10",
+    "typescript": "^7.0.2",
+    "yaml": "^2.9.1"
+  },
+  "dependencies": {
+    "js-yaml": "^5.5.0"
   }
 }

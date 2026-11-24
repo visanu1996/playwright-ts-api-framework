@@ -1,0 +1,33 @@
+createBookings:
+  - firstname: Jim
+    lastname: Brown
+    totalprice: 111
+    depositpaid: true
+    bookingdates:
+      checkin: "2018-01-01"
+      checkout: "2019-01-01"
+    additionalneeds: Breakfast
+  - firstname: Berk
+    lastname: Rising
+    totalprice: 250
+    depositpaid: true
+    bookingdates:
+      checkin: "2018-05-05"
+      checkout: "2019-05-06"
+    additionalneeds: WiFi
+  - firstname: John
+    lastname: Sulivia
+    totalprice: 450
+    depositpaid: true
+    bookingdates:
+      checkin: "2025-01-01"
+      checkout: "2026-05-01"
+    additionalneeds: Computer
+  - firstname: Tomas
+    lastname: Hiksia
+    totalprice: 100
+    depositpaid: true
+    bookingdates:
+      checkin: "2020-01-01"
+      checkout: "2021-01-01"
+    additionalneeds: Dinner

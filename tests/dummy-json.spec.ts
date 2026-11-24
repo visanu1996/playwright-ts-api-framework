@@ -1,4 +1,4 @@
-import { dummySchema, productBrand } from '../config/config';
+import { dummySchema, productBrand, testID } from '../config/config';
 import { expect, test } from './fixtures/api.fixture';
 
 test.describe('DummyJSON User Testing', () => {
@@ -81,8 +81,41 @@ test.describe('DummyJSON Product Testing', () => {
     });
 
     test('TC005 - Returns not found for an unknown product ID', async ({ dummyJson }) => {
-        const response = await dummyJson.getProductById(999999);
+        const response = await dummyJson.getProductById(testID);
 
         expect(response.status()).toBe(404);
     });
+});
+
+test.describe('DummyJSON Cart Testing', () => {
+    test('TC001 - Get all carts', async({dummyJson}) => {
+        let response = await dummyJson.getAllCart()
+        expect(response.status()).toBe(200)
+        await dummyJson.verifySchema(response,{carts: expect.arrayContaining([dummySchema.cart])})
+    })
+
+    test('TC002 - Get single cart', async({dummyJson}) => {
+        let response = await dummyJson.getCartById(1)
+        expect(response.status()).toBe(200)
+        await dummyJson.verifySchema(response,dummySchema.cart)
+    })
+
+    test('TC003 - Get cart by user', async({dummyJson}) => {
+        let response = await dummyJson.getCartByUser(10)
+        expect(response.status()).toBe(200)
+        await dummyJson.verifySchema(response,{carts: expect.arrayContaining([dummySchema.cart])})
+    })
+
+    test('TC004 - Get cart by unknown user', async({dummyJson}) => {
+        let response = await dummyJson.getCartByUser(testID)
+        expect(response.status()).toBe(404)
+        await dummyJson.verifySchema(response,{"message": `User with id '${testID}' not found`})    
+    })
+
+    test('TC005 - Get single cart by unknown id', async({dummyJson}) => {
+        let response = await dummyJson.getCartById(testID)
+        expect(response.status()).toBe(404)
+        await dummyJson.verifySchema(response,{"message": `Cart with id '${testID}' not found`})       
+    })
+
 });
